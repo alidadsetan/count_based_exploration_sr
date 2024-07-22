@@ -42,7 +42,17 @@ class ArgsParser:
                             help="Valid values: 'dot-prod', 'diff', 'gamma-diff', 'norm' ")
         parser.add_argument('-d', '--divide', type=bool, default=False,
                             help="If true, the reward is equal to 1/reward_structure")
-
+        parser.add_argument('-p', '--pmean', type=float, default=1,
+                    help="The p factor in computing pmeans")
+        parser.add_argument('-c', '--decay_steps', type=int, default=-1,
+                    help="Decay in bonus")
         args = parser.parse_args()
 
         return args
+    
+
+def format_number(number, width):
+    # Format with thousands separator
+    formatted = f"{number:,}"
+    # Left pad with spaces
+    return formatted.rjust(width)
